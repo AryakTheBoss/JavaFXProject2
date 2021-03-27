@@ -5,6 +5,15 @@ public enum DonutType {
 
     @Override
     public String toString() {
-        return "DonutType{}";
+        switch(this){
+            case YEAST:
+                return "Yeast";
+            case CAKE:
+                return "Cake";
+            case DONUT_HOLE:
+                return "Donut Hole";
+            default:
+                return "null";
+        }
     }
 }
