@@ -59,6 +59,20 @@ public class Coffee extends MenuItem implements Customizable{
         return "Coffee"+super.toString()+" "+size+" "+addons;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(!(o instanceof Coffee)) return false;
+        Coffee other = (Coffee) o;
+        return other.getAddons().equals(addons) && other.getSize() == size;
+    }
+
+    public ArrayList<AddIns> getAddons(){
+        return addons;
+    }
+    public Size getSize(){
+        return size;
+    }
+
     public float calculateAddons(){
 
         if(addons.isEmpty()){

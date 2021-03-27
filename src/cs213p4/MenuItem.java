@@ -10,8 +10,11 @@ public MenuItem(int quantity){
     this.quantity = quantity;
 }
 
-protected int getQuantity(){
+public int getQuantity(){
     return quantity;
+}
+public void incrementQuantity(){
+    quantity++;
 }
 
     @Override

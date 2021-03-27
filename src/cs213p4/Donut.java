@@ -8,10 +8,7 @@ public class Donut extends MenuItem{
     private float CAKE_PRICE = 1.59f;
     private float HOLE_PRICE = 0.33f;
 
-    @Override
-    public String toString() {
-        return type.toString()+super.toString()+" Flavor: "+flavor;
-    }
+
 
     public Donut(DonutType type, Flavor flavor, int quantity){
         super(quantity);
@@ -24,6 +21,18 @@ public class Donut extends MenuItem{
     }
     public DonutType getType(){
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return type.toString()+super.toString()+" Flavor: "+flavor;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(!(o instanceof Donut)) return false;
+        Donut other = (Donut) o;
+        return other.getFlavor() == flavor && other.getType() == type;
     }
 
     @Override

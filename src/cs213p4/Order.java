@@ -16,8 +16,14 @@ public class Order implements Customizable{
     }
 
     @Override
-    public boolean add(Object obj) {
+    public boolean add(Object obj) { //TODO check if dupe, if so then just add 1 to its qty
         if(obj instanceof MenuItem){
+            for(MenuItem i : items){
+                if(i.equals(obj)){
+                    i.incrementQuantity();
+                    return true;
+                }
+            }
             return items.add((MenuItem)obj);
         }else{
             return false;
