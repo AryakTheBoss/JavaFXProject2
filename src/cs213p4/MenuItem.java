@@ -1,5 +1,7 @@
 package cs213p4;
 
+import java.util.Objects;
+
 public class MenuItem {
 
 public int quantity;
@@ -16,6 +18,16 @@ protected int getQuantity(){
     public String toString() {
         return "("+quantity+")";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuItem)) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return quantity == menuItem.quantity;
+    }
+
+
 
     public float itemPrice(){
         return 0.0f;

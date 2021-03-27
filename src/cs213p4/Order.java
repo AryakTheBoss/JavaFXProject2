@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Order implements Customizable{
 
     private int orderNumber;
-    private static int totalOrders = 0;
+    private static int totalOrders = 0; //used to keep track of how many order instances have been created
     private ArrayList<MenuItem> items;
     private final float SALES_TAX = 1.06625f;
 
@@ -43,6 +43,10 @@ public class Order implements Customizable{
 
     public float orderTotal(){
         return orderSubTotal()*SALES_TAX;
+    }
+
+    public int getOrderNumber(){
+        return orderNumber;
     }
 
 }
