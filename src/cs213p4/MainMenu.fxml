@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cs213p4.MainMenuController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs213p4.MainMenuController">
+   <children>
+      <Label layoutX="235.0" layoutY="26.0" text="Rutgers Cafe">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <HBox alignment="CENTER" layoutX="287.0" layoutY="278.0" prefHeight="115.0" prefWidth="299.0">
+         <children>
+            <Button fx:id="myOrder" alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#myOrder" text="My Order">
+               <graphic>
+                  <ImageView fitHeight="75.0" fitWidth="77.0" onMouseClicked="#my" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../shopping cart.png" />
+                     </image></ImageView>
+               </graphic></Button>
+            <Separator prefHeight="3.0" prefWidth="54.0" />
+            <Button fx:id="storeOrders" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#storeOrders" text="Store Orders">
+               <graphic>
+                  <ImageView fitHeight="78.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../clipboard.png" />
+                     </image></ImageView>
+               </graphic></Button>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="43.0" layoutY="68.0" prefHeight="286.0" prefWidth="171.0">
+         <children>
+            <Button fx:id="orderCoffee" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#orderCoffee" prefHeight="151.0" prefWidth="226.0" text="Order Coffee">
+               <graphic>
+                  <ImageView fitHeight="132.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../coffefee.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="103.0" prefWidth="7.0" />
+            <Button fx:id="buyDonuts" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#orderDonuts" prefHeight="160.0" prefWidth="181.0" text="Buy donuts">
+               <graphic>
+                  <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../donutsust.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+         </children></VBox>
+   </children>
 </AnchorPane>
