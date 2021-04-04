@@ -11,4 +11,14 @@ public class OrderDonutsController {
 
     }
 
+    @FXML
+    public void add(){
+
+    }
+
+    @FXML
+    public void addToOrder(){
+
+    }
+
 }
