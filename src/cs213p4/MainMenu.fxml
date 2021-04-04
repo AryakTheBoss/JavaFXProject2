@@ -20,7 +20,7 @@
                         <Image url="@shopping cart.png" />
                      </image></ImageView>
                </graphic></Button>
-            <Separator prefHeight="3.0" prefWidth="54.0" />
+            <Separator prefHeight="3.0" prefWidth="54.0" visible="false" />
             <Button fx:id="storeOrders" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#storeOrders" text="Store Orders">
                <graphic>
                   <ImageView fitHeight="78.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
@@ -40,7 +40,7 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Separator orientation="VERTICAL" prefHeight="103.0" prefWidth="7.0" />
+            <Separator orientation="VERTICAL" prefHeight="103.0" prefWidth="7.0" visible="false" />
             <Button fx:id="buyDonuts" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#orderDonuts" prefHeight="160.0" prefWidth="181.0" text="Order Donuts">
                <graphic>
                   <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">

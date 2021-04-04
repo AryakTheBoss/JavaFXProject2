@@ -50,7 +50,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("OrderDonuts.fxml"));
             newWindow.setTitle("Order Donuts");
-            newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setScene(new Scene(root, 479, 488));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);

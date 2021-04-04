@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class OrderDonutsController {
     @FXML private TextField currentTotalBox;
     @FXML private TextField totalBox;
     @FXML private ListView<String> donutList;
+    @FXML private Button addO;
 
     private ArrayList<Donut> donuts = new ArrayList<>();
     private Donut currentDonut = null;
@@ -33,6 +35,8 @@ public class OrderDonutsController {
         SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
         qty.setValueFactory(valueFactory);
         qty.getValueFactory().setValue(1); //set default value, it is not editable
+        currentTotalBox.setText("$0.00");
+        totalBox.setText("$0.00");
         flavorBox.setDisable(true);
         qty.valueProperty().addListener((obs, oldValue, newValue) -> {
             if(currentDonut != null){
@@ -60,7 +64,11 @@ public class OrderDonutsController {
                             flavorBox.getItems().add(Flavor.BLUEBERRY);
                             flavorBox.getItems().add(Flavor.STRAWBERRY);
                             flavorBox.getItems().add(Flavor.PLAIN);
-                            currentDonut.setType(DonutType.YEAST);
+                            if(currentDonut != null) {
+                                currentDonut.setType(DonutType.YEAST);
+                            }else{
+                                currentDonut = new Donut(DonutType.YEAST,null,1);
+                            }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
                             break;
@@ -71,7 +79,11 @@ public class OrderDonutsController {
                             flavorBox.getItems().add(Flavor.MAPLE_SYRUP_FROSTED);
                             flavorBox.getItems().add(Flavor.JELLY_FILLED);
                             flavorBox.getItems().add(Flavor.BOSTON_CREAM);
-                            currentDonut.setType(DonutType.CAKE);
+                            if(currentDonut != null) {
+                                currentDonut.setType(DonutType.CAKE);
+                            }else{
+                                currentDonut = new Donut(DonutType.CAKE,null,1);
+                            }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
                             break;
@@ -81,7 +93,11 @@ public class OrderDonutsController {
                             flavorBox.getItems().add(Flavor.GLAZED);
                             flavorBox.getItems().add(Flavor.POWDERED_SUGAR);
                             flavorBox.getItems().add(Flavor.DOUBLE_CHOCOLATE);
-                            currentDonut.setType(DonutType.DONUT_HOLE);
+                            if(currentDonut != null) {
+                                currentDonut.setType(DonutType.DONUT_HOLE);
+                            }else{
+                                currentDonut = new Donut(DonutType.DONUT_HOLE,null,1);
+                            }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
                             break;
@@ -118,6 +134,13 @@ public class OrderDonutsController {
     }
     @FXML
     public void remove(){
+        if(donutList.getSelectionModel().getSelectedIndex() == -1){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("There are no Donuts in the list! try hitting \">>\"");
+            a.setHeaderText("No Donuts");
+            a.show();
+            return;
+        }
         donuts.remove(donutList.getSelectionModel().getSelectedIndex());
         donutList.getItems().remove(donutList.getSelectionModel().getSelectedIndex());
         totalBox.setText(format.format(getTotal()));
@@ -132,11 +155,31 @@ public class OrderDonutsController {
     private void clearForm(){
         typeGroup.getSelectedToggle().setSelected(false);
         flavorBox.getSelectionModel().clearSelection();
+        flavorBox.setDisable(true);
+        qty.getValueFactory().setValue(1);
+        currentTotalBox.setText("$0.00");
     }
 
     @FXML
     public void addToOrder(){
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        if(donuts.isEmpty()){
+            a.setContentText("There are no Donuts in the list! try hitting \">>\"");
+            a.setHeaderText("No Donuts");
+            a.show();
+            return;
+        }
 
+        for (Donut donut : donuts) {
+            References.customerOrder.add(donut); //add the donut to the order
+        }
+        a.setAlertType(Alert.AlertType.INFORMATION);
+        a.setContentText("All donuts were added to the Order!");
+        a.setHeaderText("Added to Order");
+        a.showAndWait();
+        Stage stage = (Stage) addO.getScene().getWindow(); //get the current stage
+
+        stage.close(); //close it
     }
 
 }

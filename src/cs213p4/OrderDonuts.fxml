@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="488.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs213p4.OrderDonutsController">
    <children>
@@ -57,5 +58,9 @@
          </children>
       </HBox>
       <Button fx:id="removeB" layoutX="203.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#remove" text="Remove" />
+      <Label layoutX="162.0" layoutY="28.0" text="Order Donuts">
+         <font>
+            <Font name="Balthazar Regular" size="26.0" />
+         </font></Label>
    </children>
 </AnchorPane>

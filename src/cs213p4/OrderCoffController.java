@@ -160,6 +160,13 @@ public class OrderCoffController {
 
     @FXML
     public void remove(){
+        if(coffeeList.getSelectionModel().getSelectedIndex() == -1){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("There are no Coffees in the list! try hitting \">>\"");
+            a.setHeaderText("No Coffees");
+            a.show();
+            return;
+        }
        coffees.remove(coffeeList.getSelectionModel().getSelectedIndex());
        coffeeList.getItems().remove(coffeeList.getSelectionModel().getSelectedIndex());
         totalBox.setText(format.format(getTotal()));
