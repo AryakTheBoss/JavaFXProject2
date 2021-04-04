@@ -19,7 +19,8 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("OrderCoffee.fxml"));
             newWindow.setTitle("Order Coffee");
-            newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setScene(new Scene(root, 431, 488));
+            newWindow.setAlwaysOnTop(true);
             newWindow.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,6 +36,7 @@ public class MainMenuController{
             root = FXMLLoader.load(getClass().getResource("OrderDonuts.fxml"));
             newWindow.setTitle("Order Donuts");
             newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setAlwaysOnTop(true);
             newWindow.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,6 +52,7 @@ public class MainMenuController{
             root = FXMLLoader.load(getClass().getResource("MyOrder.fxml"));
             newWindow.setTitle("My Order");
             newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setAlwaysOnTop(true);
             newWindow.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,6 +68,7 @@ public class MainMenuController{
             root = FXMLLoader.load(getClass().getResource("StoreOrders.fxml"));
             newWindow.setTitle("Store Orders");
             newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setAlwaysOnTop(true);
             newWindow.show();
         } catch (IOException e) {
             e.printStackTrace();

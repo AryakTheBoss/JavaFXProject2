@@ -44,7 +44,7 @@ public class OrderCoffController {
             }else{
                 currentCoffee = new Coffee(selectedItem,1);
             }
-            currentTotal.setText(format.format(currentCoffee.itemPrice()));
+            currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
         });
         qty.valueProperty().addListener((obs, oldValue, newValue) -> {
             if(currentCoffee != null){ //TODO update currentTotal Box
@@ -52,7 +52,7 @@ public class OrderCoffController {
             }else{
                 currentCoffee = new Coffee(null,newValue);
             }
-            currentTotal.setText(format.format(currentCoffee.itemPrice()));
+            currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
         });
 
         creamCB.selectedProperty().addListener(
@@ -62,7 +62,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.CREAM);
                     }
-                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
                 });
 
         syrupCB.selectedProperty().addListener(
@@ -72,7 +72,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.SYRUP);
                     }
-                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
                 });
 
         caramelCB.selectedProperty().addListener(
@@ -82,7 +82,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.CARAMEL);
                     }
-                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
                 });
 
         milkCB.selectedProperty().addListener(
@@ -92,7 +92,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.MILK);
                     }
-                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
                 });
 
         whpcreamCB.selectedProperty().addListener(
@@ -102,7 +102,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.WHIPPED_CREAM);
                     }
-                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
                 });
 
 
@@ -122,6 +122,22 @@ public class OrderCoffController {
         coffeeList.getItems().add(currentCoffee);
         clearForm();
         currentCoffee = null;
+        totalBox.setText("$"+format.format(getTotal()));
+    }
+    private float getTotal(){
+         float total = 0;
+        for(Coffee c : coffees){
+            total += c.itemPrice();
+        }
+        return total;
+    }
+
+    @FXML
+    public void remove(){
+       Coffee c = coffeeList.getSelectionModel().getSelectedItem();
+       coffees.remove(c);
+       coffeeList.getItems().remove(c);
+        totalBox.setText("$"+format.format(getTotal()));
     }
 
     private void clearForm(){
@@ -144,7 +160,9 @@ public class OrderCoffController {
             a.show();
             return;
         }
-        References.customerOrder.add(coffees);
+        for(Coffee c : coffees) {
+            References.customerOrder.add(c);
+        }
         a.setAlertType(Alert.AlertType.INFORMATION);
         a.setContentText("All coffees were added to the Order!");
         a.setHeaderText("Added to Order");
