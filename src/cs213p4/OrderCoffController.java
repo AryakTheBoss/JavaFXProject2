@@ -39,11 +39,20 @@ public class OrderCoffController {
         totalBox.setText("$0.00");
         currentTotal.setText("$0.00");
         coffeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        creamCB.setDisable(true);
+        syrupCB.setDisable(true);
+        caramelCB.setDisable(true);
+        milkCB.setDisable(true);
+        whpcreamCB.setDisable(true);
 
         sizeBox.setOnAction((event) -> {
             int selectedIndex = sizeBox.getSelectionModel().getSelectedIndex();
             Size selectedItem = sizeBox.getSelectionModel().getSelectedItem();
-
+            creamCB.setDisable(false);
+            syrupCB.setDisable(false);
+            caramelCB.setDisable(false);
+            milkCB.setDisable(false);
+            whpcreamCB.setDisable(false);
             if(currentCoffee != null){ //TODO update currentTotal box
                 currentCoffee.setSize(selectedItem);
             }else{
@@ -62,6 +71,7 @@ public class OrderCoffController {
 
         creamCB.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
                     if(new_val) { //if the new value is TRUE
                         currentCoffee.add(AddIns.CREAM);
                     }else{ //if the new value is FALSE
@@ -72,6 +82,7 @@ public class OrderCoffController {
 
         syrupCB.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
                     if(new_val) { //if the new value is TRUE
                         currentCoffee.add(AddIns.SYRUP);
                     }else{ //if the new value is FALSE
@@ -82,6 +93,8 @@ public class OrderCoffController {
 
         caramelCB.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
+
                     if(new_val) { //if the new value is TRUE
                         currentCoffee.add(AddIns.CARAMEL);
                     }else{ //if the new value is FALSE
@@ -92,6 +105,7 @@ public class OrderCoffController {
 
         milkCB.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
                     if(new_val) { //if the new value is TRUE
                         currentCoffee.add(AddIns.MILK);
                     }else{ //if the new value is FALSE
@@ -102,6 +116,7 @@ public class OrderCoffController {
 
         whpcreamCB.selectedProperty().addListener(
                 (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
                     if(new_val) { //if the new value is TRUE
                         currentCoffee.add(AddIns.WHIPPED_CREAM);
                     }else{ //if the new value is FALSE
@@ -154,6 +169,11 @@ public class OrderCoffController {
         caramelCB.selectedProperty().set(false);
         milkCB.selectedProperty().set(false);
         whpcreamCB.selectedProperty().set(false);
+        creamCB.setDisable(true);
+        syrupCB.setDisable(true);
+        caramelCB.setDisable(true);
+        milkCB.setDisable(true);
+        whpcreamCB.setDisable(true);
         qty.getValueFactory().setValue(1);
         currentTotal.setText("$0.00");
     }

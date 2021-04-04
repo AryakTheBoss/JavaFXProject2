@@ -25,7 +25,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("OrderCoffee.fxml"));
             newWindow.setTitle("Order Coffee");
-            newWindow.setScene(new Scene(root, 431, 488));
+            newWindow.setScene(new Scene(root, 479, 488));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);

@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="488.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs213p4.OrderCoffController">
+<AnchorPane prefHeight="488.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs213p4.OrderCoffController">
    <children>
-      <Label layoutX="132.0" layoutY="28.0" text="Order Coffee">
+      <Label layoutX="191.0" layoutY="27.0" text="Order Coffee">
          <font>
             <Font name="Balthazar Regular" size="26.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="45.0" layoutY="71.0" prefHeight="100.0" prefWidth="365.0">
+      <HBox alignment="CENTER" layoutX="67.0" layoutY="70.0" prefHeight="100.0" prefWidth="365.0">
          <children>
             <Label text="Size:" />
             <Separator prefHeight="14.0" prefWidth="25.0" visible="false" />
@@ -60,9 +60,9 @@
             <Spinner fx:id="qty" prefHeight="25.0" prefWidth="64.0" />
          </children>
       </HBox>
-      <ListView fx:id="coffeeList" layoutX="237.0" layoutY="321.0" prefHeight="100.0" prefWidth="167.0" />
+      <ListView fx:id="coffeeList" layoutX="237.0" layoutY="321.0" prefHeight="100.0" prefWidth="227.0" />
       <Button fx:id="addToList" layoutX="166.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#add" prefHeight="25.0" prefWidth="49.0" text="&gt;&gt;" />
-      <Button fx:id="addToOrder" layoutX="300.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#addOrder" prefHeight="32.0" prefWidth="104.0" text="Add to Order" />
+      <Button fx:id="addToOrder" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#addOrder" prefHeight="32.0" prefWidth="104.0" text="Add to Order" />
       <HBox alignment="CENTER" layoutX="14.0" layoutY="380.0" prefHeight="50.0" prefWidth="214.0">
          <children>
             <Label text="Current Coffee Total:" />
