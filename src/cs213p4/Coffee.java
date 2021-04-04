@@ -41,15 +41,15 @@ public class Coffee extends MenuItem implements Customizable{
         switch(size){
 
             case SHORT:
-                return SHORT_PRICE + calculateAddons();
+                return (SHORT_PRICE + calculateAddons())*super.getQuantity();
             case TALL:
-                return TALL_PRICE + calculateAddons();
+                return (TALL_PRICE + calculateAddons())*super.getQuantity();
             case GRANDE:
-                return GRANDE_PRICE + calculateAddons();
+                return (GRANDE_PRICE + calculateAddons())*super.getQuantity();
             case VENTI:
-                return VENTI_PRICE + calculateAddons();
+                return (VENTI_PRICE + calculateAddons())*super.getQuantity();
             default:
-                return -1;
+                return 0;
         }
 
     }
@@ -71,6 +71,9 @@ public class Coffee extends MenuItem implements Customizable{
     }
     public Size getSize(){
         return size;
+    }
+    public void setSize(Size s){
+        size = s;
     }
 
     public float calculateAddons(){

@@ -9,7 +9,7 @@
    <children>
       <Label layoutX="235.0" layoutY="26.0" text="Rutgers Cafe">
          <font>
-            <Font size="21.0" />
+            <Font name="Balthazar Regular" size="35.0" />
          </font></Label>
       <HBox alignment="CENTER" layoutX="287.0" layoutY="278.0" prefHeight="115.0" prefWidth="299.0">
          <children>
@@ -41,7 +41,7 @@
                </graphic>
             </Button>
             <Separator orientation="VERTICAL" prefHeight="103.0" prefWidth="7.0" />
-            <Button fx:id="buyDonuts" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#orderDonuts" prefHeight="160.0" prefWidth="181.0" text="Buy donuts">
+            <Button fx:id="buyDonuts" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#orderDonuts" prefHeight="160.0" prefWidth="181.0" text="Order Donuts">
                <graphic>
                   <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
                      <image>

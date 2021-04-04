@@ -16,6 +16,9 @@ public int getQuantity(){
 public void incrementQuantity(){
     quantity++;
 }
+    public void setQuantity(int q){
+        quantity = q;
+    }
 
     @Override
     public String toString() {

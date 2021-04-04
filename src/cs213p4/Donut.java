@@ -39,13 +39,13 @@ public class Donut extends MenuItem{
     public float itemPrice() {
         switch(type){
             case YEAST:
-            return YEAST_PRICE;
+            return YEAST_PRICE*super.getQuantity();
             case CAKE:
-                return CAKE_PRICE;
+                return CAKE_PRICE*super.getQuantity();
             case DONUT_HOLE:
-                return HOLE_PRICE;
+                return HOLE_PRICE*super.getQuantity();
             default:
-                return -1;
+                return 0;
         }
     }
 }
