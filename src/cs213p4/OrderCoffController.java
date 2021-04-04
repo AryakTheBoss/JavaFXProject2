@@ -33,9 +33,9 @@ public class OrderCoffController {
         sizeBox.getItems().add(Size.TALL);
         sizeBox.getItems().add(Size.GRANDE);
         sizeBox.getItems().add(Size.VENTI);
-        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20);
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
         qty.setValueFactory(valueFactory);
-        qty.getValueFactory().setValue(1);
+        qty.getValueFactory().setValue(1); //set default value, it is not editable
         totalBox.setText("$0.00");
         currentTotal.setText("$0.00");
         coffeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -53,7 +53,7 @@ public class OrderCoffController {
             caramelCB.setDisable(false);
             milkCB.setDisable(false);
             whpcreamCB.setDisable(false);
-            if(currentCoffee != null){ //TODO update currentTotal box
+            if(currentCoffee != null){
                 currentCoffee.setSize(selectedItem);
             }else{
                 currentCoffee = new Coffee(selectedItem,1);
@@ -61,7 +61,7 @@ public class OrderCoffController {
             currentTotal.setText(format.format(currentCoffee.itemPrice()));
         });
         qty.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(currentCoffee != null){ //TODO update currentTotal Box
+            if(currentCoffee != null){
                 currentCoffee.setQuantity(newValue);
             }else{
                 currentCoffee = new Coffee(null,newValue);
@@ -131,6 +131,9 @@ public class OrderCoffController {
 
     }
 
+    /**
+     * adds the current coffee to the list of coffees
+     */
     @FXML
     public void add(){
         Alert a = new Alert(Alert.AlertType.WARNING);
@@ -140,11 +143,11 @@ public class OrderCoffController {
             a.show();
             return;
         }
-        coffees.add(currentCoffee);
-        coffeeList.getItems().add(currentCoffee.toString());
+        coffees.add(currentCoffee); //add the coffee to the internal arraylist
+        coffeeList.getItems().add(currentCoffee.toString()); //add to the display list
 
         currentCoffee = null;
-        totalBox.setText(format.format(getTotal()));
+        totalBox.setText(format.format(getTotal())); //update total
         clearForm();
     }
     private float getTotal(){
@@ -189,15 +192,15 @@ public class OrderCoffController {
         }
 
         for (Coffee coffee : coffees) {
-            References.customerOrder.add(coffee);
+            References.customerOrder.add(coffee); //add the coffee to the order
         }
         a.setAlertType(Alert.AlertType.INFORMATION);
         a.setContentText("All coffees were added to the Order!");
         a.setHeaderText("Added to Order");
         a.showAndWait();
-        Stage stage = (Stage) addToOrder.getScene().getWindow();
+        Stage stage = (Stage) addToOrder.getScene().getWindow(); //get the current stage
 
-        stage.close();
+        stage.close(); //close it
     }
 
 }
