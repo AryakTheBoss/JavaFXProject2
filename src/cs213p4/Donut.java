@@ -23,6 +23,14 @@ public class Donut extends MenuItem{
         return type;
     }
 
+    public void setType(DonutType type) {
+        this.type = type;
+    }
+
+    public void setFlavor(Flavor flavor) {
+        this.flavor = flavor;
+    }
+
     @Override
     public String toString() {
         return type.toString()+super.toString()+" Flavor: "+flavor;

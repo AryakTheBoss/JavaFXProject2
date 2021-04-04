@@ -42,19 +42,20 @@
       <ListView fx:id="donutList" layoutX="282.0" layoutY="278.0" prefHeight="143.0" prefWidth="173.0" />
       <Button fx:id="addL" layoutX="204.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#add" prefHeight="25.0" prefWidth="50.0" text="&gt;&gt;" />
       <Button fx:id="addO" layoutX="341.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#addToOrder" prefHeight="34.0" prefWidth="113.0" text="Add to Order" />
-      <HBox alignment="CENTER" layoutX="22.0" layoutY="321.0" prefHeight="48.0" prefWidth="232.0">
+      <HBox alignment="CENTER" layoutX="29.0" layoutY="360.0" prefHeight="48.0" prefWidth="232.0">
          <children>
             <Label text="This Donut:" />
             <Separator prefHeight="3.0" prefWidth="41.0" visible="false" />
             <TextField fx:id="currentTotalBox" editable="false" prefHeight="25.0" prefWidth="101.0" promptText="\$" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="45.0" layoutY="369.0" prefHeight="48.0" prefWidth="200.0">
+      <HBox alignment="CENTER" layoutX="45.0" layoutY="408.0" prefHeight="48.0" prefWidth="200.0">
          <children>
             <Label text="Sub-Total:" />
             <Separator prefHeight="3.0" prefWidth="41.0" visible="false" />
             <TextField fx:id="totalBox" editable="false" prefHeight="25.0" prefWidth="101.0" promptText="\$" />
          </children>
       </HBox>
+      <Button fx:id="removeB" layoutX="203.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#remove" text="Remove" />
    </children>
 </AnchorPane>
