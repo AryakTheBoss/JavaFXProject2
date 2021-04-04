@@ -37,6 +37,9 @@ public class Donut extends MenuItem{
 
     @Override
     public float itemPrice() {
+        if(type == null){
+            return 0;
+        }
         switch(type){
             case YEAST:
             return YEAST_PRICE*super.getQuantity();

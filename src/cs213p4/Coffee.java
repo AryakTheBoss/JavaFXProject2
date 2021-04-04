@@ -38,6 +38,9 @@ public class Coffee extends MenuItem implements Customizable{
 
     @Override
     public float itemPrice() {
+        if(size == null){
+            return 0;
+        }
         switch(size){
 
             case SHORT:

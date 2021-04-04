@@ -3,6 +3,7 @@ package cs213p4;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ public class OrderCoffController {
     @FXML private CheckBox milkCB;
     @FXML private CheckBox whpcreamCB;
     @FXML private Spinner<Integer> qty;
-    @FXML private ListView<Coffee> coffeeList;
+    @FXML private ListView<String> coffeeList;
     @FXML private TextField totalBox;
     @FXML private TextField currentTotal;
+    @FXML private Button addToOrder;
 
     private ArrayList<Coffee> coffees = new ArrayList<>();
     private Coffee currentCoffee = null;
@@ -31,9 +33,12 @@ public class OrderCoffController {
         sizeBox.getItems().add(Size.TALL);
         sizeBox.getItems().add(Size.GRANDE);
         sizeBox.getItems().add(Size.VENTI);
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20);
+        qty.setValueFactory(valueFactory);
         qty.getValueFactory().setValue(1);
         totalBox.setText("$0.00");
         currentTotal.setText("$0.00");
+        coffeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         sizeBox.setOnAction((event) -> {
             int selectedIndex = sizeBox.getSelectionModel().getSelectedIndex();
@@ -44,7 +49,7 @@ public class OrderCoffController {
             }else{
                 currentCoffee = new Coffee(selectedItem,1);
             }
-            currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+            currentTotal.setText(format.format(currentCoffee.itemPrice()));
         });
         qty.valueProperty().addListener((obs, oldValue, newValue) -> {
             if(currentCoffee != null){ //TODO update currentTotal Box
@@ -52,7 +57,7 @@ public class OrderCoffController {
             }else{
                 currentCoffee = new Coffee(null,newValue);
             }
-            currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+            currentTotal.setText(format.format(currentCoffee.itemPrice()));
         });
 
         creamCB.selectedProperty().addListener(
@@ -62,7 +67,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.CREAM);
                     }
-                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
                 });
 
         syrupCB.selectedProperty().addListener(
@@ -72,7 +77,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.SYRUP);
                     }
-                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
                 });
 
         caramelCB.selectedProperty().addListener(
@@ -82,7 +87,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.CARAMEL);
                     }
-                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
                 });
 
         milkCB.selectedProperty().addListener(
@@ -92,7 +97,7 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.MILK);
                     }
-                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
                 });
 
         whpcreamCB.selectedProperty().addListener(
@@ -102,8 +107,10 @@ public class OrderCoffController {
                     }else{ //if the new value is FALSE
                         currentCoffee.remove(AddIns.WHIPPED_CREAM);
                     }
-                    currentTotal.setText("$"+format.format(currentCoffee.itemPrice()));
+                    currentTotal.setText(format.format(currentCoffee.itemPrice()));
                 });
+
+
 
 
 
@@ -119,25 +126,25 @@ public class OrderCoffController {
             return;
         }
         coffees.add(currentCoffee);
-        coffeeList.getItems().add(currentCoffee);
-        clearForm();
+        coffeeList.getItems().add(currentCoffee.toString());
+
         currentCoffee = null;
-        totalBox.setText("$"+format.format(getTotal()));
+        totalBox.setText(format.format(getTotal()));
+        clearForm();
     }
     private float getTotal(){
          float total = 0;
-        for(Coffee c : coffees){
-            total += c.itemPrice();
+        for (Coffee coffee : coffees) {
+            total += coffee.itemPrice();
         }
         return total;
     }
 
     @FXML
     public void remove(){
-       Coffee c = coffeeList.getSelectionModel().getSelectedItem();
-       coffees.remove(c);
-       coffeeList.getItems().remove(c);
-        totalBox.setText("$"+format.format(getTotal()));
+       coffees.remove(coffeeList.getSelectionModel().getSelectedIndex());
+       coffeeList.getItems().remove(coffeeList.getSelectionModel().getSelectedIndex());
+        totalBox.setText(format.format(getTotal()));
     }
 
     private void clearForm(){
@@ -160,13 +167,17 @@ public class OrderCoffController {
             a.show();
             return;
         }
-        for(Coffee c : coffees) {
-            References.customerOrder.add(c);
+
+        for (Coffee coffee : coffees) {
+            References.customerOrder.add(coffee);
         }
         a.setAlertType(Alert.AlertType.INFORMATION);
         a.setContentText("All coffees were added to the Order!");
         a.setHeaderText("Added to Order");
-        a.show();
+        a.showAndWait();
+        Stage stage = (Stage) addToOrder.getScene().getWindow();
+
+        stage.close();
     }
 
 }

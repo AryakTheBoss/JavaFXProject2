@@ -15,9 +15,9 @@
          <children>
             <Button fx:id="myOrder" alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#myOrder" text="My Order">
                <graphic>
-                  <ImageView fitHeight="75.0" fitWidth="77.0" onMouseClicked="#my" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../shopping cart.png" />
+                        <Image url="@shopping cart.png" />
                      </image></ImageView>
                </graphic></Button>
             <Separator prefHeight="3.0" prefWidth="54.0" />
@@ -25,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="78.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../clipboard.png" />
+                        <Image url="@clipboard.png" />
                      </image></ImageView>
                </graphic></Button>
          </children>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="132.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../coffefee.png" />
+                        <Image url="@coffefee.png" />
                      </image></ImageView>
                </graphic>
             </Button>
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../donutsust.png" />
+                        <Image url="@donutsust.png" />
                      </image></ImageView>
                </graphic>
             </Button>
