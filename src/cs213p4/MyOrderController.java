@@ -19,7 +19,7 @@ public class MyOrderController {
     @FXML private TextField orderNumber;
 
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
-
+//TODO price bugs need to fix
     @FXML
     public void initialize(){
 
@@ -53,7 +53,7 @@ public class MyOrderController {
         }
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
-        tax.setText(format.format(Order.SALES_TAX*References.customerOrder.orderSubTotal()));
+        tax.setText(format.format((Order.SALES_TAX-1)*References.customerOrder.orderSubTotal()));
 
     }
 
