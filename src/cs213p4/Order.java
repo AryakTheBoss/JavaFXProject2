@@ -7,7 +7,7 @@ public class Order implements Customizable{
     private int orderNumber;
     private static int totalOrders = 1; //used to keep track of how many order instances have been created
     private ArrayList<MenuItem> items;
-    private final float SALES_TAX = 1.06625f;
+    public static final float SALES_TAX = 1.06625f;
 
     public Order(){
         items = new ArrayList<>();
@@ -37,6 +37,14 @@ public class Order implements Customizable{
         }else{
             return false;
         }
+    }
+
+    public ArrayList<MenuItem> getItems(){
+        return items;
+    }
+
+    public void setItems(ArrayList<MenuItem> mi){
+        items = mi;
     }
 
     public float orderSubTotal(){
