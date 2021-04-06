@@ -50,7 +50,7 @@ public class Order implements Customizable{
     public float orderSubTotal(){
         float price = 0.0f;
         for(MenuItem i : items){
-            price += i.itemPrice()*i.getQuantity();
+            price += i.itemPrice();
         }
         return price;
     }

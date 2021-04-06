@@ -29,7 +29,7 @@ public class MyOrderController {
         }
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
-        tax.setText(format.format(Order.SALES_TAX*References.customerOrder.orderSubTotal()));
+        tax.setText(format.format((Order.SALES_TAX-1)*References.customerOrder.orderSubTotal()));
         orderNumber.setText("Your Order#: "+References.customerOrder.getOrderNumber());
     }
 
@@ -64,6 +64,8 @@ public class MyOrderController {
             a.setAlertType(Alert.AlertType.WARNING);
             a.setContentText("Order is empty!");
             a.setHeaderText("No items");
+            a.show();
+            return;
         }
         References.orders.add(References.customerOrder);
         //alert that it was added
