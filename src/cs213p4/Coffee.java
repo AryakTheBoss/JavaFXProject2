@@ -59,7 +59,7 @@ public class Coffee extends MenuItem implements Customizable{
 
     @Override
     public String toString() {
-        return "Coffee"+super.toString()+" "+size+" "+addons;
+        return "Coffee"+super.toString()+" "+size+" Addons: "+addons;
     }
 
     @Override
