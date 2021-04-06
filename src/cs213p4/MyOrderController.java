@@ -2,6 +2,7 @@ package cs213p4;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 import java.sql.Ref;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class MyOrderController {
 
@@ -67,16 +69,29 @@ public class MyOrderController {
             a.show();
             return;
         }
-        References.orders.add(References.customerOrder);
-        //alert that it was added
-        References.customerOrder = new Order();
-        a.setContentText("Order was placed.");
-        a.setHeaderText("Placed");
-        a.showAndWait();
-        //close window
-        Stage stage = (Stage) listOfOrders.getScene().getWindow(); //get the current stage
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Do you want to place this Order?.");
+        a.setHeaderText("Confirm");
+        Optional<ButtonType> result = a.showAndWait();
+        if(result.isEmpty() || result.get() != ButtonType.OK) {
+           return;
+        } else {
+            a.setAlertType(Alert.AlertType.INFORMATION);
+            a.setContentText("Order was placed.");
+            a.setHeaderText("Placed.");
+            a.showAndWait();
+            References.orders.add(References.customerOrder);
+            //alert that it was added
+            References.customerOrder = new Order();
 
-        stage.close(); //close it
+
+            //close window
+            Stage stage = (Stage) listOfOrders.getScene().getWindow(); //get the current stage
+
+            stage.close(); //close it
+        }
+
+
     }
 
 
