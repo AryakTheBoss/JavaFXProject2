@@ -16,9 +16,9 @@ public enum DonutType {
     public String toString() {
         switch(this){
             case YEAST:
-                return "Yeast";
+                return "Yeast Donut";
             case CAKE:
-                return "Cake";
+                return "Cake Donut";
             case DONUT_HOLE:
                 return "Donut Hole";
             default:

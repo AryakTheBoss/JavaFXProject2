@@ -5,8 +5,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 /**
@@ -67,9 +71,7 @@ public class StoreOrdersController {
                         orderNum.getItems().add(o.getOrderNumber());
                     }
                     orderNum.getSelectionModel().select(FIRSTINDEX);
-                    for (MenuItem mi : temp.get(FIRSTINDEX).getItems()) {
-                        ordersList.getItems().add(mi.toString());
-                    }
+
                     References.orders.setOrders(temp);
                 }catch(IndexOutOfBoundsException | NullPointerException e){
                     Alert a = new Alert(Alert.AlertType.WARNING);
@@ -89,6 +91,51 @@ public class StoreOrdersController {
 
     @FXML
     public void exportOrder(){
+        ArrayList<Order> orders = References.orders.getOrders();
+        if(orders.isEmpty()){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("There are currently no Orders!");
+            a.setHeaderText("No Orders");
+            a.show();
+            return;
+        }
+        FileChooser dialog = new FileChooser();
+        dialog.setInitialFileName("store_orders.txt");
+        dialog.setTitle("Export Orders");
+        File f = dialog.showSaveDialog(orderNum.getScene().getWindow()); //open the dialog
+
+
+            try {
+                if(f.createNewFile()){
+                    //file created successfully, write the stuff
+                    FileWriter myWriter = new FileWriter(f); //filewriter to write to a file
+                    ArrayList<Order> temp = References.orders.getOrders();
+                    for(Order o : temp){//for each order, write to file
+
+                            myWriter.write(o.toString()); //convert their information to string
+                            myWriter.write("\n"); //write a new line to file
+
+                    }
+                    myWriter.flush(); //close and write to the file
+                    myWriter.close();
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("File was saved.");
+                    a.setHeaderText("Done.");
+                    a.show();
+
+                }else{ //file could not be created
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("File already exists.");
+                    a.setHeaderText("Error");
+                    a.show();
+                }
+            } catch (IOException e) {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("There was an IO Error.");
+                a.setHeaderText("Error");
+                a.show();
+            }
+
 
     }
 

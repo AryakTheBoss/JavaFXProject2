@@ -32,7 +32,7 @@ public class Order implements Customizable{
         if(obj instanceof MenuItem){
             for(MenuItem i : items){
                 if(i.equals(obj)){
-                    i.incrementQuantity();
+                    i.setQuantity(i.getQuantity()+((MenuItem) obj).getQuantity());
                     return true;
                 }
             }
@@ -98,6 +98,16 @@ public class Order implements Customizable{
      */
     public int getOrderNumber(){
         return orderNumber;
+    }
+
+    @Override
+    public String toString(){
+        String result = "----- Order #"+orderNumber+" -----";
+        for(MenuItem mi : items){
+            result += "\n"+mi.toString();
+        }
+        return result;
+
     }
 
 }
