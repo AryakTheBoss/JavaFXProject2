@@ -31,4 +31,8 @@ public class StoreOrders implements Customizable{
     public ArrayList<Order> getOrders(){
         return orders;
     }
+
+    public void setOrders(ArrayList<Order> oo){
+        orders = oo;
+    }
 }

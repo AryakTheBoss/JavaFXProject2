@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainMenuController{
 
@@ -95,6 +97,16 @@ public class MainMenuController{
     public void storeOrders(){
         Parent root = null;
         Stage newWindow = new Stage();
+        ArrayList<Order> orders = References.orders.getOrders();
+        if(orders.isEmpty()){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("There are currently no Orders!");
+            a.setHeaderText("No Orders");
+            a.show();
+
+             return;
+        }
+
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("StoreOrders.fxml"));
             newWindow.setTitle("Store Orders");

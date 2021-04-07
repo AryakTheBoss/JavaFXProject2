@@ -22,15 +22,7 @@ public class StoreOrdersController {
     public void initialize(){
         ArrayList<Order> orders = References.orders.getOrders();
         total.setText("$0.00");
-        if(orders.isEmpty()){
-            Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("There are currently no Orders!");
-            a.setHeaderText("No Orders");
-            a.showAndWait();
-            Stage stage = (Stage) ordersList.getScene().getWindow(); //get the current stage
-            stage.close(); //close it
-            return;
-        }
+
         for(Order o:orders){
             orderNum.getItems().add(o.getOrderNumber());
         }
@@ -38,26 +30,55 @@ public class StoreOrdersController {
         orderNum.getSelectionModel().select(FIRSTINDEX);
         ArrayList<Order> temp = References.orders.getOrders();
         ordersList.getItems().clear();
-        for(MenuItem mi: temp.get(FIRSTINDEX).getItems()){
-            ordersList.getItems().add(mi.toString());
-        }
 
-        total.setText(format.format(temp.get(FIRSTINDEX).orderTotal()));
+            for (MenuItem mi : temp.get(FIRSTINDEX).getItems()) {
+                ordersList.getItems().add(mi.toString());
+            }
+            total.setText(format.format(temp.get(FIRSTINDEX).orderTotal()));
+
+
+
     }
 
     @FXML
     public void cancel(){
         //culture
+        ArrayList<Order> orders = References.orders.getOrders();
+        if(orders.isEmpty()){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("There are currently no Orders!");
+            a.setHeaderText("No Orders");
+            a.show();
+            return;
+        }
         int save = orderNum.getSelectionModel().getSelectedItem();
         ArrayList<Order> temp = References.orders.getOrders();
         for(int i = 0;i<temp.size();i++){
             if(temp.get(i).getOrderNumber() == save){
-                ordersList.getItems().clear();
-                temp.remove(i);
-                orderNum.getSelectionModel().select(FIRSTINDEX);
-                for(MenuItem mi: temp.get(FIRSTINDEX).getItems()){
-                    ordersList.getItems().add(mi.toString());
+                try {
+                    ordersList.getItems().clear();
+                    temp.remove(i);
+                    orderNum.getItems().clear();
+                    for (Order o : temp) {
+                        orderNum.getItems().add(o.getOrderNumber());
+                    }
+                    orderNum.getSelectionModel().select(FIRSTINDEX);
+                    for (MenuItem mi : temp.get(FIRSTINDEX).getItems()) {
+                        ordersList.getItems().add(mi.toString());
+                    }
+                    References.orders.setOrders(temp);
+                }catch(IndexOutOfBoundsException | NullPointerException e){
+                    Alert a = new Alert(Alert.AlertType.WARNING);
+                    a.setContentText("There are no more Orders left!");
+                    a.setHeaderText("No Orders");
+                    a.show();
+                    Stage stage = (Stage) orderNum.getScene().getWindow(); //get the current stage
+
+                    stage.close(); //close it
+                    return;
                 }
+                break;
+
             }
         }
     }
@@ -69,17 +90,22 @@ public class StoreOrdersController {
 
     @FXML
     public void changeOrderList(){
-        int save = orderNum.getSelectionModel().getSelectedItem();
-        ArrayList<Order> temp = References.orders.getOrders();
-        for(int i = 0;i<temp.size();i++){
-            if(temp.get(i).getOrderNumber() == save){
-                ordersList.getItems().clear();
-                for(MenuItem mi: temp.get(i).getItems()){
-                    ordersList.getItems().add(mi.toString());
+        try {
+            int save = orderNum.getSelectionModel().getSelectedItem();
+            ArrayList<Order> temp = References.orders.getOrders();
+            for(int i = 0;i<temp.size();i++){
+                if(temp.get(i).getOrderNumber() == save){
+                    ordersList.getItems().clear();
+                    for(MenuItem mi: temp.get(i).getItems()){
+                        ordersList.getItems().add(mi.toString());
+                    }
+                    total.setText(format.format(temp.get(i).orderTotal()));
                 }
-                total.setText(format.format(temp.get(i).orderTotal()));
             }
+        }catch(NullPointerException e){
+            // nothing
         }
+
 
     }
 
