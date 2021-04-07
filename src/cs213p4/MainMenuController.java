@@ -27,36 +27,47 @@ public class MainMenuController{
     private final int WINDOWHEIGHT = 488;
 
 
+    /**
+     * called by order coffe button
+     */
     @FXML
-    public void orderCoffee(){
+    public void orderCoffee(){ //called by order coffee button
         Parent root = null;
         Stage newWindow = new Stage();
-        try { //open main menu
+        try {
             root = FXMLLoader.load(getClass().getResource("OrderCoffee.fxml"));
             newWindow.setTitle("Order Coffee");
             newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             newWindow.setResizable(false);
+            //disable all buttons
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);
             myOrder.setDisable(true);
             storeOrders.setDisable(true);
-            newWindow.showAndWait();
+            newWindow.showAndWait(); //show the menu and wait
+            //re-enable the buttons once the menu closes
             orderCoffee.setDisable(false);
             buyDonuts.setDisable(false);
             myOrder.setDisable(false);
             storeOrders.setDisable(false);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Unable to open window.");
+            a.setHeaderText("idk what happend");
+            a.show();
         }
     }
 
+    /**
+     * called by order donuts button
+     */
     @FXML
 
     public void orderDonuts(){
         Parent root = null;
         Stage newWindow = new Stage();
-        try { //open main menu
+        try {
             root = FXMLLoader.load(getClass().getResource("OrderDonuts.fxml"));
             newWindow.setTitle("Order Donuts");
             newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
@@ -65,16 +76,23 @@ public class MainMenuController{
             buyDonuts.setDisable(true);
             myOrder.setDisable(true);
             storeOrders.setDisable(true);
-            newWindow.showAndWait();
+            newWindow.showAndWait();//show the menu and wait
+            //re-enable the buttons once the menu closes
             orderCoffee.setDisable(false);
             buyDonuts.setDisable(false);
             myOrder.setDisable(false);
             storeOrders.setDisable(false);
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Unable to open window.");
+            a.setHeaderText("idk what happend");
+            a.show();
         }
     }
 
+    /**
+     * called by my order button
+     */
     @FXML
 
     public void myOrder(){
@@ -89,7 +107,7 @@ public class MainMenuController{
 
             return;
         }
-        try { //open main menu
+        try {
             root = FXMLLoader.load(getClass().getResource("MyOrder.fxml"));
             newWindow.setTitle("My Order");
             newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
@@ -98,16 +116,23 @@ public class MainMenuController{
             buyDonuts.setDisable(true);
             myOrder.setDisable(true);
             storeOrders.setDisable(true);
-            newWindow.showAndWait();
+            newWindow.showAndWait();//show the menu and wait
+            //re-enable the buttons once the menu closes
             orderCoffee.setDisable(false);
             buyDonuts.setDisable(false);
             myOrder.setDisable(false);
             storeOrders.setDisable(false);
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Unable to open window.");
+            a.setHeaderText("idk what happend");
+            a.show();
         }
     }
 
+    /**
+     * called by store orders button
+     */
     @FXML
 
     public void storeOrders(){
@@ -123,7 +148,7 @@ public class MainMenuController{
              return;
         }
 
-        try { //open main menu
+        try {
             root = FXMLLoader.load(getClass().getResource("StoreOrders.fxml"));
             newWindow.setTitle("Store Orders");
             newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
@@ -132,13 +157,17 @@ public class MainMenuController{
             buyDonuts.setDisable(true);
             myOrder.setDisable(true);
             storeOrders.setDisable(true);
-            newWindow.showAndWait();
+            newWindow.showAndWait();//show the menu and wait
+            //re-enable the buttons once the menu closes
             orderCoffee.setDisable(false);
             buyDonuts.setDisable(false);
             myOrder.setDisable(false);
             storeOrders.setDisable(false);
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Unable to open window.");
+            a.setHeaderText("idk what happend");
+            a.show();
         }
     }
 

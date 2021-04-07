@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class OrderCoffController {
 
-    @FXML private ChoiceBox<Size> sizeBox;
+    @FXML private ChoiceBox<Size> sizeBox; //THIS IS A CHOICE BOX, COMBO BOX IS USED IN STORE ORDERS CONTROLLER (no time to chaneg this)
     @FXML private CheckBox creamCB;
     @FXML private CheckBox syrupCB;
     @FXML private CheckBox caramelCB;
@@ -32,15 +32,19 @@ public class OrderCoffController {
     private final int DEFAULT = 1;
     private final int NONE = 0;
     private final int DOESNOTEXIST = 0;
+    private final int QTY_MIN = 1;
+    private final int QTY_MAX = 100;
 
-
+    /**
+     * initialize the coffee form
+     */
     @FXML
     public void initialize(){
         sizeBox.getItems().add(Size.SHORT);
         sizeBox.getItems().add(Size.TALL);
         sizeBox.getItems().add(Size.GRANDE);
         sizeBox.getItems().add(Size.VENTI);
-        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(QTY_MIN, QTY_MAX); //set the qty box range to something between 1 and 100
         qty.setValueFactory(valueFactory);
         qty.getValueFactory().setValue(DEFAULT); //set default value, it is not editable
         totalBox.setText("$0.00");
@@ -48,11 +52,11 @@ public class OrderCoffController {
         coffeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         creamCB.setDisable(true);
         syrupCB.setDisable(true);
-        caramelCB.setDisable(true);
+        caramelCB.setDisable(true); //disable these by default until a size is selected
         milkCB.setDisable(true);
         whpcreamCB.setDisable(true);
 
-        sizeBox.setOnAction((event) -> {
+        sizeBox.setOnAction((event) -> { //listen for size changes
             int selectedIndex = sizeBox.getSelectionModel().getSelectedIndex();
             Size selectedItem = sizeBox.getSelectionModel().getSelectedItem();
             creamCB.setDisable(false);
@@ -67,7 +71,7 @@ public class OrderCoffController {
             }
             currentTotal.setText(format.format(currentCoffee.itemPrice()));
         });
-        qty.valueProperty().addListener((obs, oldValue, newValue) -> {
+        qty.valueProperty().addListener((obs, oldValue, newValue) -> { //listen for quantity changes
             if(currentCoffee != null){
                 currentCoffee.setQuantity(newValue);
             }else{
@@ -155,8 +159,14 @@ public class OrderCoffController {
 
         currentCoffee = null;
         totalBox.setText(format.format(getTotal())); //update total
+        //clear the form so a new coffee can be added
         clearForm();
     }
+
+    /**
+     * calculates the total price of the coffees in the list (no tax)
+     * @return the total price
+     */
     private float getTotal(){
          float total = NONE;
         for (Coffee coffee : coffees) {
@@ -165,6 +175,9 @@ public class OrderCoffController {
         return total;
     }
 
+    /**
+     * removes a coffee from the list
+     */
     @FXML
     public void remove(){
         if(coffeeList.getSelectionModel().getSelectedIndex() == DOESNOTEXIST){
@@ -179,6 +192,9 @@ public class OrderCoffController {
         totalBox.setText(format.format(getTotal()));
     }
 
+    /**
+     * clears the form
+     */
     private void clearForm(){
         sizeBox.getSelectionModel().clearSelection();
         creamCB.selectedProperty().set(false);
@@ -195,6 +211,9 @@ public class OrderCoffController {
         currentTotal.setText("$0.00");
     }
 
+    /**
+     * adds all the coffees to the order
+     */
     @FXML
     public void addOrder(){
         Alert a = new Alert(Alert.AlertType.WARNING);

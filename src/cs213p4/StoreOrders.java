@@ -10,10 +10,18 @@ public class StoreOrders implements Customizable{
 
     private ArrayList<Order> orders;
 
+    /**
+     * constructs a new store order
+     */
     public StoreOrders(){
         orders = new ArrayList<>();
     }
 
+    /**
+     * adds an order to the list
+     * @param obj the object
+     * @return
+     */
     @Override
     public boolean add(Object obj) {
         if(obj instanceof Order){
@@ -23,6 +31,11 @@ public class StoreOrders implements Customizable{
         }
     }
 
+    /**
+     * removes and order from teh list
+     * @param obj
+     * @return
+     */
     @Override
     public boolean remove(Object obj) {
         if(obj instanceof Order){
@@ -32,10 +45,18 @@ public class StoreOrders implements Customizable{
         }
     }
 
+    /**
+     * gets the orders
+     * @return the order list
+     */
     public ArrayList<Order> getOrders(){
         return orders;
     }
 
+    /**
+     * sets the order list
+     * @param oo the list to set it to
+     */
     public void setOrders(ArrayList<Order> oo){
         orders = oo;
     }

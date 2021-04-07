@@ -9,10 +9,10 @@ public class Donut extends MenuItem{
 
     private DonutType type;
     private Flavor flavor;
-    private float YEAST_PRICE = 1.39f;
-    private float CAKE_PRICE = 1.59f;
-    private float HOLE_PRICE = 0.33f;
-    private float FALSEVALUE = 0;
+    private final float YEAST_PRICE = 1.39f;
+    private final float CAKE_PRICE = 1.59f;
+    private final float HOLE_PRICE = 0.33f;
+    private final float NONE = 0;
 
 
     /**
@@ -87,7 +87,7 @@ public class Donut extends MenuItem{
     @Override
     public float itemPrice() {
         if(type == null){
-            return FALSEVALUE;
+            return NONE;
         }
         switch(type){
             case YEAST:
@@ -97,7 +97,7 @@ public class Donut extends MenuItem{
             case DONUT_HOLE:
                 return HOLE_PRICE*super.getQuantity();
             default:
-                return 0;
+                return NONE;
         }
     }
 }

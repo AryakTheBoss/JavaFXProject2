@@ -27,20 +27,26 @@ public class MyOrderController {
     private final int TAXOFFSET = 1;
 
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
-//TODO price bugs need to fix
+
+    /**
+     * initialize the menu
+     */
     @FXML
     public void initialize(){
 
         ArrayList<MenuItem> mi = References.customerOrder.getItems();
-        for(MenuItem i : mi) {
+        for(MenuItem i : mi) { //populate item listview
             listOfOrders.getItems().add(i.toString());
         }
-        subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
-        total.setText(format.format(References.customerOrder.orderTotal()));
-        tax.setText(format.format((Order.SALES_TAX-TAXOFFSET)*References.customerOrder.orderSubTotal()));
-        orderNumber.setText("Your Order#: "+References.customerOrder.getOrderNumber());
+        subtotal.setText(format.format(References.customerOrder.orderSubTotal())); //get subtotal
+        total.setText(format.format(References.customerOrder.orderTotal())); //get total
+        tax.setText(format.format((Order.SALES_TAX-TAXOFFSET)*References.customerOrder.orderSubTotal())); //calculate just the tax portion of the total
+        orderNumber.setText("Your Order#: "+References.customerOrder.getOrderNumber()); //display current order number
     }
 
+    /**
+     * called by the remove item button. removes the selected item from the list
+     */
     @FXML
     public void remove(){
         Alert a = new Alert(Alert.AlertType.WARNING);
@@ -54,7 +60,7 @@ public class MyOrderController {
         ArrayList<MenuItem> mi = References.customerOrder.getItems();
         mi.remove(index);
         References.customerOrder.setItems(mi);
-        mi = References.customerOrder.getItems();
+        mi = References.customerOrder.getItems(); //just to make sure
         listOfOrders.getItems().clear();
         for(MenuItem i : mi) {
             listOfOrders.getItems().add(i.toString());
@@ -65,6 +71,9 @@ public class MyOrderController {
 
     }
 
+    /**
+     * called by the place order button, places the order, and adds it to store orders list
+     */
     @FXML
     public void placeOrder(){
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -78,16 +87,17 @@ public class MyOrderController {
         a.setAlertType(Alert.AlertType.CONFIRMATION);
         a.setContentText("Do you want to place this Order?");
         a.setHeaderText("Confirm");
-        Optional<ButtonType> result = a.showAndWait();
+        Optional<ButtonType> result = a.showAndWait(); //ask to confirm
         if(result.isEmpty() || result.get() != ButtonType.OK) {
-           return;
-        } else {
+           return; //hitting cancel does nothing
+        } else { //if OK was pressed
+            //alert that it was added
             a.setAlertType(Alert.AlertType.INFORMATION);
             a.setContentText("Order was placed.");
             a.setHeaderText("Placed.");
             a.showAndWait();
             References.orders.add(References.customerOrder);
-            //alert that it was added
+
             References.customerOrder = new Order();
 
 

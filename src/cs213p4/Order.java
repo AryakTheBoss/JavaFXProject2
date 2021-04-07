@@ -32,7 +32,7 @@ public class Order implements Customizable{
     public boolean add(Object obj) {
         if(obj instanceof MenuItem){
             for(MenuItem i : items){
-                if(i.equals(obj)){
+                if(i.equals(obj)){ //if the item being added already exists, just merge their quantities.
                     i.setQuantity(i.getQuantity()+((MenuItem) obj).getQuantity());
                     return true;
                 }
@@ -101,6 +101,10 @@ public class Order implements Customizable{
         return orderNumber;
     }
 
+    /**
+     * converts this order into a string. Used for file export
+     * @return the string representation of an order
+     */
     @Override
     public String toString(){
         String result = "----- Order #"+orderNumber+" -----";

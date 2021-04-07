@@ -26,6 +26,9 @@ public class StoreOrdersController {
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
     private final int FIRSTINDEX = 0;
 
+    /**
+     * initialize the menu with teh 1st order selected by default and populating the list
+     */
     @FXML
     public void initialize(){
         ArrayList<Order> orders = References.orders.getOrders();
@@ -35,11 +38,11 @@ public class StoreOrdersController {
             orderNum.getItems().add(o.getOrderNumber());
         }
 
-        orderNum.getSelectionModel().select(FIRSTINDEX);
+        orderNum.getSelectionModel().select(FIRSTINDEX); //select 1st index by default
         ArrayList<Order> temp = References.orders.getOrders();
         ordersList.getItems().clear();
 
-            for (MenuItem mi : temp.get(FIRSTINDEX).getItems()) {
+            for (MenuItem mi : temp.get(FIRSTINDEX).getItems()) { //populate the list of items using the first index
                 ordersList.getItems().add(mi.toString());
             }
             total.setText(format.format(temp.get(FIRSTINDEX).orderTotal()));
@@ -48,6 +51,9 @@ public class StoreOrdersController {
 
     }
 
+    /**
+     * cancels the current order that is selected i.e. removes it from the store orders list
+     */
     @FXML
     public void cancel(){
         //culture
@@ -93,6 +99,9 @@ public class StoreOrdersController {
         }
     }
 
+    /**
+     * exports all orders and writes them to a text file using a file chooser
+     */
     @FXML
     public void exportOrder(){
         ArrayList<Order> orders = References.orders.getOrders();
@@ -143,6 +152,9 @@ public class StoreOrdersController {
 
     }
 
+    /**
+     * called by the order number combo box. refreshes the item list based on what order is selected.
+     */
     @FXML
     public void changeOrderList(){
         try {

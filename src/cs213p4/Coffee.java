@@ -17,6 +17,7 @@ public class Coffee extends MenuItem implements Customizable{
     private final float GRANDE_PRICE = 2.99f;
     private final float VENTI_PRICE = 3.49f;
     private final float ADDON_PRICE = 0.2f;
+    private final int NONE = 0;
 
     /**
      * Constructor to create Coffee
@@ -64,7 +65,7 @@ public class Coffee extends MenuItem implements Customizable{
     @Override
     public float itemPrice() {
         if(size == null){
-            return 0;
+            return NONE;
         }
         switch(size){
 
@@ -77,7 +78,7 @@ public class Coffee extends MenuItem implements Customizable{
             case VENTI:
                 return (VENTI_PRICE + calculateAddons())*super.getQuantity();
             default:
-                return 0;
+                return NONE;
         }
 
     }
@@ -134,7 +135,7 @@ public class Coffee extends MenuItem implements Customizable{
     public float calculateAddons(){
 
         if(addons.isEmpty()){
-            return 0;
+            return NONE;
         }
         return addons.size()*ADDON_PRICE;
 

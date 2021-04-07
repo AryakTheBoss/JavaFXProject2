@@ -28,13 +28,6 @@ private final float DEFAULT = 0.0f;
     }
 
     /**
-     * increase the quantity of the item when applicable
-     */
-    public void incrementQuantity(){
-    quantity++;
-}
-
-    /**
      * setter method for the quantity of the item
      * @param q the quantity to set to
      */

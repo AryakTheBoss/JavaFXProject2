@@ -20,7 +20,7 @@ public class OrderDonutsController {
     @FXML private RadioButton yeastRB;
     @FXML private RadioButton cakeRB;
     @FXML private RadioButton holeRB;
-    @FXML private ChoiceBox<Flavor> flavorBox;
+    @FXML private ChoiceBox<Flavor> flavorBox; //THIS IS A CHOICE BOX, COMBO BOX IS USED IN STORE ORDERS CONTROLLER (no time to chaneg this)
     @FXML private Spinner<Integer> qty;
     @FXML private TextField currentTotalBox;
     @FXML private TextField totalBox;
@@ -33,13 +33,18 @@ public class OrderDonutsController {
     private final int DEFAULT = 1;
     private final int DOESNOTEXIST = -1;
     private final int NONE = 0;
+    private final int QTY_MIN = 1;
+    private final int QTY_MAX = 100;
 
+    /**
+     * initialize the menu
+     */
     @FXML
     public void initialize(){
         yeastRB.setToggleGroup(typeGroup);
-        cakeRB.setToggleGroup(typeGroup);
+        cakeRB.setToggleGroup(typeGroup); //add radios to a type group
         holeRB.setToggleGroup(typeGroup);
-        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(QTY_MIN, QTY_MAX); //set the qty box range to something between 1 and 100
         qty.setValueFactory(valueFactory);
         qty.getValueFactory().setValue(DEFAULT); //set default value, it is not editable
         currentTotalBox.setText("$0.00");
@@ -116,6 +121,9 @@ public class OrderDonutsController {
 
     }
 
+    /**
+     * adds the donut to the list
+     */
     @FXML
     public void add(){
         Alert a = new Alert(Alert.AlertType.WARNING);
@@ -139,6 +147,10 @@ public class OrderDonutsController {
         totalBox.setText(format.format(getTotal())); //update total
         clearForm();
     }
+
+    /**
+     * removes a donut from the list, shows alert if theres an error
+     */
     @FXML
     public void remove(){
         if(donutList.getSelectionModel().getSelectedIndex() == DOESNOTEXIST){
@@ -152,6 +164,11 @@ public class OrderDonutsController {
         donutList.getItems().remove(donutList.getSelectionModel().getSelectedIndex());
         totalBox.setText(format.format(getTotal()));
     }
+
+    /**
+     * gets the total of the donuts in the list without tax
+     * @return the total
+     */
     private float getTotal(){
         float total = NONE;
         for (Donut donut : donuts) {
@@ -159,6 +176,10 @@ public class OrderDonutsController {
         }
         return total;
     }
+
+    /**
+     * clears the form for the next donut to be added
+     */
     private void clearForm(){
         typeGroup.getSelectedToggle().setSelected(false);
         flavorBox.getSelectionModel().clearSelection();
@@ -167,6 +188,9 @@ public class OrderDonutsController {
         currentTotalBox.setText("$0.00");
     }
 
+    /**
+     * adds all the donuts to the order.
+     */
     @FXML
     public void addToOrder(){
         Alert a = new Alert(Alert.AlertType.WARNING);
