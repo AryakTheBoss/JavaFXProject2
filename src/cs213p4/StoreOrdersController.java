@@ -87,6 +87,10 @@ public class StoreOrdersController {
 
             }
         }
+       temp = References.orders.getOrders();
+        if(temp.isEmpty()){
+            total.setText("$0.00");
+        }
     }
 
     @FXML
