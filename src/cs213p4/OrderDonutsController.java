@@ -8,7 +8,11 @@ import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Class to control the Order Donut GUI
+ * @author mss390 amp487
+ *
+ */
 public class OrderDonutsController {
 
     private ToggleGroup typeGroup = new ToggleGroup();

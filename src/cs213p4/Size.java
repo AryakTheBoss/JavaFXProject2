@@ -1,5 +1,9 @@
 package cs213p4;
-
+/**
+ * Class to contain constants for sizes of Coffees
+ * @author mss390 amp487
+ *
+ */
 public enum Size {
 
     SHORT,TALL,GRANDE,VENTI;

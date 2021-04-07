@@ -7,7 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * Main class
+ * @author mss390 amp487
+ *
+ */
 public class Main extends Application {
 
     public static void main(String[] args) {

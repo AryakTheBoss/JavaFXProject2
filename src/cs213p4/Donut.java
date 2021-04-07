@@ -1,5 +1,10 @@
 package cs213p4;
 
+/**
+ * Class to describe the item type Donut
+ * @author mss390 amp487
+ *
+ */
 public class Donut extends MenuItem{
 
     private DonutType type;

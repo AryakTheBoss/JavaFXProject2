@@ -2,6 +2,12 @@ package cs213p4;
 
 import java.util.ArrayList;
 
+
+/**
+ * Class represents the item type Coffee
+ * @author mss390 amp487
+ *
+ */
 public class Coffee extends MenuItem implements Customizable{
 
     private ArrayList<AddIns> addons;

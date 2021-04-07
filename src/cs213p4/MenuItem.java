@@ -1,7 +1,11 @@
 package cs213p4;
 
 import java.util.Objects;
-
+/**
+ * Class to represent the items within the Menu
+ * @author mss390 amp487
+ *
+ */
 public class MenuItem {
 
 public int quantity;

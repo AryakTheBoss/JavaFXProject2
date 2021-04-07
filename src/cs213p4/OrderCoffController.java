@@ -7,7 +7,11 @@ import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Class to control the Order Coffee GUI
+ * @author mss390 amp487
+ *
+ */
 public class OrderCoffController {
 
     @FXML private ChoiceBox<Size> sizeBox;

@@ -1,7 +1,11 @@
 package cs213p4;
 
 import java.util.ArrayList;
-
+/**
+ * Class to hold customer order
+ * @author mss390 amp487
+ *
+ */
 public class Order implements Customizable{
 
     private int orderNumber;

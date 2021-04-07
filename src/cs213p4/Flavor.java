@@ -1,5 +1,9 @@
 package cs213p4;
-
+/**
+ * Class to contain constants for Donut Flavors
+ * @author mss390 amp487
+ *
+ */
 public enum Flavor {
     CHOCOLATE_FROSTED,STRAWBERRY,GLAZED,BOSTON_CREAM,JELLY_FILLED,BLUEBERRY,POWDERED_SUGAR,PLAIN,MAPLE_SYRUP_FROSTED,DOUBLE_CHOCOLATE;
 
