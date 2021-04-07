@@ -7,6 +7,10 @@ package cs213p4;
 public enum Flavor {
     CHOCOLATE_FROSTED,STRAWBERRY,GLAZED,BOSTON_CREAM,JELLY_FILLED,BLUEBERRY,POWDERED_SUGAR,PLAIN,MAPLE_SYRUP_FROSTED,DOUBLE_CHOCOLATE;
 
+    /**
+     * convert the donut flavor into a string
+     * @return the string of donut flavor
+     */
     @Override
     public String toString() {
         switch(this){

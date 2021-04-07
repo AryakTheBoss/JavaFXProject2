@@ -13,11 +13,18 @@ import java.io.IOException;
  *
  */
 public class Main extends Application {
-
+    /**
+     * begin the program
+     * @param args String arguments (none)
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * method to start the program
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
 

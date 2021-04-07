@@ -8,6 +8,10 @@ public enum Size {
 
     SHORT,TALL,GRANDE,VENTI;
 
+    /**
+     * method to convert size of a coffee to a string that can be displayed
+     * @return the string with coffee size details
+     */
     @Override
     public String toString() {
         switch(this){

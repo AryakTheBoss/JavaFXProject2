@@ -13,12 +13,20 @@ public class Order implements Customizable{
     private ArrayList<MenuItem> items;
     public static final float SALES_TAX = 1.06625f;
 
+    /**
+     * constructor for creating a new customer order
+     */
     public Order(){
         items = new ArrayList<>();
         totalOrders++;
         orderNumber = totalOrders;
     }
 
+    /**
+     * add an item to the total order
+     * @param obj the menu item to be added
+     * @return true if the object was added successfully
+     */
     @Override
     public boolean add(Object obj) {
         if(obj instanceof MenuItem){
@@ -34,6 +42,11 @@ public class Order implements Customizable{
         }
     }
 
+    /**
+     * remove a menu item from the order
+     * @param obj the item to remove
+     * @return true if the item exists in the order
+     */
     @Override
     public boolean remove(Object obj) {
         if(obj instanceof MenuItem){
@@ -43,14 +56,26 @@ public class Order implements Customizable{
         }
     }
 
+    /**
+     * getter for the items in a list
+     * @return the array-list of menu item
+     */
     public ArrayList<MenuItem> getItems(){
         return items;
     }
 
+    /**
+     * setter method for the items in the list
+     * @param mi the array-list of items to add
+     */
     public void setItems(ArrayList<MenuItem> mi){
         items = mi;
     }
 
+    /**
+     * method to find subtotal (the price of items before tax)
+     * @return the float subtotal value
+     */
     public float orderSubTotal(){
         float price = 0.0f;
         for(MenuItem i : items){
@@ -59,10 +84,18 @@ public class Order implements Customizable{
         return price;
     }
 
+    /**
+     * calculate the total order price by multiplying by sales tax constant
+     * @return the float total order price
+     */
     public float orderTotal(){
         return orderSubTotal()*SALES_TAX;
     }
 
+    /**
+     * getter method for the order of the number from within the total list
+     * @return the order number
+     */
     public int getOrderNumber(){
         return orderNumber;
     }

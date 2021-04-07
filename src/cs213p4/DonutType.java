@@ -8,6 +8,10 @@ package cs213p4;
 public enum DonutType {
     YEAST,CAKE,DONUT_HOLE;
 
+    /**
+     * method to convert donut type into a string to be displayed
+     * @return the string of donut type
+     */
     @Override
     public String toString() {
         switch(this){
