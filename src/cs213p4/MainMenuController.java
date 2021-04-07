@@ -11,6 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to control the Main Menu GUI
+ * @author mss390 amp487
+ *
+ */
 public class MainMenuController{
 
 
@@ -19,8 +24,8 @@ public class MainMenuController{
 @FXML private Button myOrder;
 @FXML private Button storeOrders;
 
-    @FXML
 
+    @FXML
     public void orderCoffee(){
         Parent root = null;
         Stage newWindow = new Stage();

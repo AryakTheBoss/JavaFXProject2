@@ -1,7 +1,11 @@
 package cs213p4;
 
 import java.util.ArrayList;
-
+/**
+ * Class to hold the orders of all customers
+ * @author mss390 amp487
+ *
+ */
 public class StoreOrders implements Customizable{
 
     private ArrayList<Order> orders;

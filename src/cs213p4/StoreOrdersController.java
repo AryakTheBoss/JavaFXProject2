@@ -9,7 +9,11 @@ import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Class to control the Store Orders GUI
+ * @author mss390 amp487
+ *
+ */
 public class StoreOrdersController {
 
     @FXML private ComboBox<Integer> orderNum;

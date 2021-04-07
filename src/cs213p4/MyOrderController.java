@@ -11,7 +11,11 @@ import java.sql.Ref;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Optional;
-
+/**
+ * Class to control the My Order GUI
+ * @author mss390 amp487
+ *
+ */
 public class MyOrderController {
 
     @FXML private ListView<String> listOfOrders;
