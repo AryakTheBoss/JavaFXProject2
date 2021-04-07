@@ -23,6 +23,8 @@ public class MainMenuController{
 @FXML private Button buyDonuts;
 @FXML private Button myOrder;
 @FXML private Button storeOrders;
+    private final int WINDOWWIDTH = 479;
+    private final int WINDOWHEIGHT = 488;
 
 
     @FXML
@@ -32,7 +34,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("OrderCoffee.fxml"));
             newWindow.setTitle("Order Coffee");
-            newWindow.setScene(new Scene(root, 479, 488));
+            newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);
@@ -57,7 +59,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("OrderDonuts.fxml"));
             newWindow.setTitle("Order Donuts");
-            newWindow.setScene(new Scene(root, 479, 488));
+            newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);
@@ -90,7 +92,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("MyOrder.fxml"));
             newWindow.setTitle("My Order");
-            newWindow.setScene(new Scene(root, 479, 488));
+            newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);
@@ -124,7 +126,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("StoreOrders.fxml"));
             newWindow.setTitle("Store Orders");
-            newWindow.setScene(new Scene(root, 479, 488));
+            newWindow.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);

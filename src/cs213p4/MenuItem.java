@@ -9,6 +9,7 @@ import java.util.Objects;
 public class MenuItem {
 
 public int quantity;
+private final float DEFAULT = 0.0f;
 
     /**
      * Constructor for menu items
@@ -66,6 +67,6 @@ public int quantity;
 
 
     public float itemPrice(){
-        return 0.0f;
+        return DEFAULT;
     }
 }

@@ -30,6 +30,9 @@ public class OrderDonutsController {
     private ArrayList<Donut> donuts = new ArrayList<>();
     private Donut currentDonut = null;
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
+    private final int DEFAULT = 1;
+    private final int DOESNOTEXIST = -1;
+    private final int NONE = 0;
 
     @FXML
     public void initialize(){
@@ -38,7 +41,7 @@ public class OrderDonutsController {
         holeRB.setToggleGroup(typeGroup);
         SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
         qty.setValueFactory(valueFactory);
-        qty.getValueFactory().setValue(1); //set default value, it is not editable
+        qty.getValueFactory().setValue(DEFAULT); //set default value, it is not editable
         currentTotalBox.setText("$0.00");
         totalBox.setText("$0.00");
         flavorBox.setDisable(true);
@@ -71,7 +74,7 @@ public class OrderDonutsController {
                             if(currentDonut != null) {
                                 currentDonut.setType(DonutType.YEAST);
                             }else{
-                                currentDonut = new Donut(DonutType.YEAST,null,1);
+                                currentDonut = new Donut(DonutType.YEAST,null,DEFAULT);
                             }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
@@ -86,7 +89,7 @@ public class OrderDonutsController {
                             if(currentDonut != null) {
                                 currentDonut.setType(DonutType.CAKE);
                             }else{
-                                currentDonut = new Donut(DonutType.CAKE,null,1);
+                                currentDonut = new Donut(DonutType.CAKE,null,DEFAULT);
                             }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
@@ -100,7 +103,7 @@ public class OrderDonutsController {
                             if(currentDonut != null) {
                                 currentDonut.setType(DonutType.DONUT_HOLE);
                             }else{
-                                currentDonut = new Donut(DonutType.DONUT_HOLE,null,1);
+                                currentDonut = new Donut(DonutType.DONUT_HOLE,null,DEFAULT);
                             }
                             currentTotalBox.setText(format.format(currentDonut.itemPrice()));
                             flavorBox.setDisable(false);
@@ -138,7 +141,7 @@ public class OrderDonutsController {
     }
     @FXML
     public void remove(){
-        if(donutList.getSelectionModel().getSelectedIndex() == -1){
+        if(donutList.getSelectionModel().getSelectedIndex() == DOESNOTEXIST){
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("No Donuts are Selected");
             a.setHeaderText("No Selection");
@@ -150,7 +153,7 @@ public class OrderDonutsController {
         totalBox.setText(format.format(getTotal()));
     }
     private float getTotal(){
-        float total = 0;
+        float total = NONE;
         for (Donut donut : donuts) {
             total += donut.itemPrice();
         }
@@ -160,7 +163,7 @@ public class OrderDonutsController {
         typeGroup.getSelectedToggle().setSelected(false);
         flavorBox.getSelectionModel().clearSelection();
         flavorBox.setDisable(true);
-        qty.getValueFactory().setValue(1);
+        qty.getValueFactory().setValue(DEFAULT);
         currentTotalBox.setText("$0.00");
     }
 

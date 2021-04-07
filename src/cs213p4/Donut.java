@@ -12,6 +12,7 @@ public class Donut extends MenuItem{
     private float YEAST_PRICE = 1.39f;
     private float CAKE_PRICE = 1.59f;
     private float HOLE_PRICE = 0.33f;
+    private float FALSEVALUE = 0;
 
 
     /**
@@ -86,7 +87,7 @@ public class Donut extends MenuItem{
     @Override
     public float itemPrice() {
         if(type == null){
-            return 0;
+            return FALSEVALUE;
         }
         switch(type){
             case YEAST:

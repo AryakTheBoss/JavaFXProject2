@@ -12,6 +12,7 @@ public class Order implements Customizable{
     private static int totalOrders = 0; //used to keep track of how many order instances have been created
     private ArrayList<MenuItem> items;
     public static final float SALES_TAX = 1.06625f;
+    private final float DEFAULT = 0.0f;
 
     /**
      * constructor for creating a new customer order
@@ -77,7 +78,7 @@ public class Order implements Customizable{
      * @return the float subtotal value
      */
     public float orderSubTotal(){
-        float price = 0.0f;
+        float price = DEFAULT;
         for(MenuItem i : items){
             price += i.itemPrice();
         }

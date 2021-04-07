@@ -23,6 +23,8 @@ public class MyOrderController {
     @FXML private TextField tax;
     @FXML private TextField total;
     @FXML private TextField orderNumber;
+    private final int DOESNOTEXIST = -1;
+    private final int TAXOFFSET = 1;
 
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
 //TODO price bugs need to fix
@@ -35,7 +37,7 @@ public class MyOrderController {
         }
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
-        tax.setText(format.format((Order.SALES_TAX-1)*References.customerOrder.orderSubTotal()));
+        tax.setText(format.format((Order.SALES_TAX-TAXOFFSET)*References.customerOrder.orderSubTotal()));
         orderNumber.setText("Your Order#: "+References.customerOrder.getOrderNumber());
     }
 
@@ -43,7 +45,7 @@ public class MyOrderController {
     public void remove(){
         Alert a = new Alert(Alert.AlertType.WARNING);
         int index = listOfOrders.getSelectionModel().getSelectedIndex();
-        if(index == -1){
+        if(index == DOESNOTEXIST){
             a.setContentText("You did not select an item!");
             a.setHeaderText("No item selected");
             a.show();
@@ -59,7 +61,7 @@ public class MyOrderController {
         }
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
-        tax.setText(format.format((Order.SALES_TAX-1)*References.customerOrder.orderSubTotal()));
+        tax.setText(format.format((Order.SALES_TAX-TAXOFFSET)*References.customerOrder.orderSubTotal()));
 
     }
 

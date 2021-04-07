@@ -29,6 +29,9 @@ public class OrderCoffController {
     private ArrayList<Coffee> coffees = new ArrayList<>();
     private Coffee currentCoffee = null;
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
+    private final int DEFAULT = 1;
+    private final int NONE = 0;
+    private final int DOESNOTEXIST = 0;
 
 
     @FXML
@@ -39,7 +42,7 @@ public class OrderCoffController {
         sizeBox.getItems().add(Size.VENTI);
         SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20); //set the qty box range to something between 1 and 20
         qty.setValueFactory(valueFactory);
-        qty.getValueFactory().setValue(1); //set default value, it is not editable
+        qty.getValueFactory().setValue(DEFAULT); //set default value, it is not editable
         totalBox.setText("$0.00");
         currentTotal.setText("$0.00");
         coffeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -60,7 +63,7 @@ public class OrderCoffController {
             if(currentCoffee != null){
                 currentCoffee.setSize(selectedItem);
             }else{
-                currentCoffee = new Coffee(selectedItem,1);
+                currentCoffee = new Coffee(selectedItem,DEFAULT);
             }
             currentTotal.setText(format.format(currentCoffee.itemPrice()));
         });
@@ -155,7 +158,7 @@ public class OrderCoffController {
         clearForm();
     }
     private float getTotal(){
-         float total = 0;
+         float total = NONE;
         for (Coffee coffee : coffees) {
             total += coffee.itemPrice();
         }
@@ -164,7 +167,7 @@ public class OrderCoffController {
 
     @FXML
     public void remove(){
-        if(coffeeList.getSelectionModel().getSelectedIndex() == -1){
+        if(coffeeList.getSelectionModel().getSelectedIndex() == DOESNOTEXIST){
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("No Coffee is selected.");
             a.setHeaderText("No Selection");
@@ -188,7 +191,7 @@ public class OrderCoffController {
         caramelCB.setDisable(true);
         milkCB.setDisable(true);
         whpcreamCB.setDisable(true);
-        qty.getValueFactory().setValue(1);
+        qty.getValueFactory().setValue(DEFAULT);
         currentTotal.setText("$0.00");
     }
 

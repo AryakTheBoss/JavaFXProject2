@@ -7,12 +7,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+
+
 /**
  * Main class
  * @author mss390 amp487
  *
  */
 public class Main extends Application {
+
+    private final int WINDOWWIDTH = 590;
+    private final int WINDOWHEIGHT = 475;
+
     /**
      * begin the program
      * @param args String arguments (none)
@@ -32,7 +39,7 @@ public class Main extends Application {
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             primaryStage.setTitle("RU Cafe");
-            primaryStage.setScene(new Scene(root, 590, 475));
+            primaryStage.setScene(new Scene(root, WINDOWWIDTH, WINDOWHEIGHT));
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,3 +48,4 @@ public class Main extends Application {
 
     }
 }
+
