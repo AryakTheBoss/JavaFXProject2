@@ -27,4 +27,8 @@ public class StoreOrders implements Customizable{
             return false;
         }
     }
+
+    public ArrayList<Order> getOrders(){
+        return orders;
+    }
 }

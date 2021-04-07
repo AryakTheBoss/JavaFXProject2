@@ -29,7 +29,7 @@ public class OrderCoffController {
 
     @FXML
     public void initialize(){
-       sizeBox.getItems().add(Size.SHORT);
+        sizeBox.getItems().add(Size.SHORT);
         sizeBox.getItems().add(Size.TALL);
         sizeBox.getItems().add(Size.GRANDE);
         sizeBox.getItems().add(Size.VENTI);
@@ -167,8 +167,8 @@ public class OrderCoffController {
             a.show();
             return;
         }
-       coffees.remove(coffeeList.getSelectionModel().getSelectedIndex());
-       coffeeList.getItems().remove(coffeeList.getSelectionModel().getSelectedIndex());
+        coffees.remove(coffeeList.getSelectionModel().getSelectedIndex());
+        coffeeList.getItems().remove(coffeeList.getSelectionModel().getSelectedIndex());
         totalBox.setText(format.format(getTotal()));
     }
 

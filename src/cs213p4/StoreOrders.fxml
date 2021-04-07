@@ -16,15 +16,15 @@
          <children>
             <Label text="Order Number:" />
             <Separator prefHeight="7.0" prefWidth="21.0" visible="false" />
-            <ComboBox fx:id="orderNum" prefHeight="25.0" prefWidth="106.0" />
+            <ComboBox fx:id="orderNum" onAction="#changeOrderList" prefHeight="25.0" prefWidth="106.0" />
             <Separator prefHeight="13.0" prefWidth="37.0" visible="false" />
             <Label text="Total:" />
             <Separator prefHeight="13.0" prefWidth="16.0" visible="false" />
-            <TextField fx:id="total" prefHeight="25.0" prefWidth="93.0" />
+            <TextField fx:id="total" editable="false" prefHeight="25.0" prefWidth="93.0" />
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
-      <Button layoutX="256.0" layoutY="437.0" mnemonicParsing="false" text="Cancel Order" />
-      <Button layoutX="360.0" layoutY="437.0" mnemonicParsing="false" text="Export Orders" />
+      <Button layoutX="256.0" layoutY="437.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Cancel Order" />
+      <Button layoutX="360.0" layoutY="437.0" mnemonicParsing="false" onMouseClicked="#exportOrder" text="Export Orders" />
    </children>
 </AnchorPane>
