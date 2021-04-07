@@ -166,8 +166,8 @@ public class OrderCoffController {
     public void remove(){
         if(coffeeList.getSelectionModel().getSelectedIndex() == -1){
             Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("There are no Coffees in the list! try hitting \">>\"");
-            a.setHeaderText("No Coffees");
+            a.setContentText("No Coffee is selected.");
+            a.setHeaderText("No Selection");
             a.show();
             return;
         }

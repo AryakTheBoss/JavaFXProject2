@@ -140,8 +140,8 @@ public class OrderDonutsController {
     public void remove(){
         if(donutList.getSelectionModel().getSelectedIndex() == -1){
             Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("There are no Donuts in the list! try hitting \">>\"");
-            a.setHeaderText("No Donuts");
+            a.setContentText("No Donuts are Selected");
+            a.setHeaderText("No Selection");
             a.show();
             return;
         }

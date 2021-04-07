@@ -74,7 +74,7 @@ public class MyOrderController {
             return;
         }
         a.setAlertType(Alert.AlertType.CONFIRMATION);
-        a.setContentText("Do you want to place this Order?.");
+        a.setContentText("Do you want to place this Order?");
         a.setHeaderText("Confirm");
         Optional<ButtonType> result = a.showAndWait();
         if(result.isEmpty() || result.get() != ButtonType.OK) {

@@ -78,6 +78,15 @@ public class MainMenuController{
     public void myOrder(){
         Parent root = null;
         Stage newWindow = new Stage();
+        ArrayList<MenuItem> items = References.customerOrder.getItems();
+        if(items.isEmpty()){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Your order is empty. Please add items by clicking on\n Donuts or Coffee.");
+            a.setHeaderText("No Items");
+            a.show();
+
+            return;
+        }
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("MyOrder.fxml"));
             newWindow.setTitle("My Order");
@@ -115,7 +124,7 @@ public class MainMenuController{
         try { //open main menu
             root = FXMLLoader.load(getClass().getResource("StoreOrders.fxml"));
             newWindow.setTitle("Store Orders");
-            newWindow.setScene(new Scene(root, 590, 475));
+            newWindow.setScene(new Scene(root, 479, 488));
             newWindow.setResizable(false);
             orderCoffee.setDisable(true);
             buyDonuts.setDisable(true);
